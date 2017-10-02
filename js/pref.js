@@ -601,7 +601,7 @@ PttChromePref.prototype = {
       values: DEFAULT_PREFS,
       logins: {'u':'', 'p':''}
     };
-    if (this.app.appConn.isConnected) {
+    if ((this.app.appConn) && (this.app.appConn.isConnected)) {
       this.app.appConn.appPort.postMessage({ action: 'storage', type: 'get', defaults: defaults });
     } else {
 
