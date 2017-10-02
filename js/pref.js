@@ -637,7 +637,7 @@ PttChromePref.prototype = {
   },
 
   setStorage: function(items) {
-    if (this.app.appConn.isConnected) {
+    if ((this.app.appConn) && (this.app.appConn.isConnected)) {
       this.app.appConn.appPort.postMessage({ action: 'storage', type: 'set', data: items });
     }else {
       localStorage.setItem("user_setting", JSON.stringify(items));
