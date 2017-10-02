@@ -1,5 +1,8 @@
 pttchrome.Websocket = function(url) {
   this._conn = new WebSocket(url);
+
+  this.loginStr = ['','','',''];
+
   this._conn.binaryType = "arraybuffer";
   this._conn.addEventListener('open', this._onOpen.bind(this));
   this._conn.addEventListener('message', this._onMessage.bind(this));

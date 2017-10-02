@@ -34,7 +34,7 @@ PttChromePref.prototype = {
       $('#opt_'+i).empty();
       var val = this.values[i];
 
-      // for blacklisted userids 
+      // for blacklisted userids
       if (i === 'blacklistedUserIds') {
         continue;
       }
@@ -51,7 +51,7 @@ PttChromePref.prototype = {
         }
         continue;
       }
-      
+
       // for the color selection box
       if (i === 'mouseBrowsingHighlightColor') {
         var qName = '#opt_'+i;
@@ -165,7 +165,7 @@ PttChromePref.prototype = {
     this.setupExtensionsPage();
 
     this.setupAboutPage();
-    
+
     $('#opt_tabs a').click(function(e) {
       e.preventDefault();
 
@@ -385,7 +385,7 @@ PttChromePref.prototype = {
       var inputToSelect = $(this).find('input');
       inputToSelect[0].select();
     }).focusout(function(e) {
-      if (e.relatedTarget && e.relatedTarget.parentNode && 
+      if (e.relatedTarget && e.relatedTarget.parentNode &&
           this.parentNode == e.relatedTarget.parentNode.parentNode) {
         return;
       }
@@ -422,7 +422,7 @@ PttChromePref.prototype = {
 
   setupAboutPage: function() {
     var contents = [
-        'review', 'feedback', 'fbpage', 
+        'review', 'feedback', 'fbpage',
         'promote',
         'version_title', 'version',
         'new_title'
@@ -537,10 +537,11 @@ PttChromePref.prototype = {
       this.app.onPrefChange(this, i);
     }
     if (this.logins[0]) {
-      this.app.conn.loginStr[1] = this.logins[0];
+      console.log(this.app.conn);
+      this.app.conn.socket.loginStr[1] = this.logins[0];
     }
     if (this.logins[1]) {
-      this.app.conn.loginStr[2] = this.logins[1];
+      this.app.conn.socket.loginStr[2] = this.logins[1];
     }
   },
 
@@ -595,6 +596,7 @@ PttChromePref.prototype = {
   },
 
   getStorage: function(key) {
+
     var defaults = {
       values: DEFAULT_PREFS,
       logins: {'u':'', 'p':''}
@@ -602,7 +604,14 @@ PttChromePref.prototype = {
     if (this.app.appConn.isConnected) {
       this.app.appConn.appPort.postMessage({ action: 'storage', type: 'get', defaults: defaults });
     } else {
-      this.onStorageDone({ data: defaults });
+
+      var userPref = JSON.parse(localStorage.getItem("user_setting")) || defaults;
+
+      console.log("do");
+      console.log(userPref);
+      console.log(defaults);
+
+      this.onStorageDone({ data: userPref });
     }
   },
 
@@ -618,7 +627,7 @@ PttChromePref.prototype = {
 
   setBlacklistStorage: function() {
     if (this.app.appConn.isConnected) {
-      var items = { 
+      var items = {
         values: {
           blacklistedUserIds: this.values.blacklistedUserIds
         }
@@ -630,6 +639,8 @@ PttChromePref.prototype = {
   setStorage: function(items) {
     if (this.app.appConn.isConnected) {
       this.app.appConn.appPort.postMessage({ action: 'storage', type: 'set', data: items });
+    }else {
+      localStorage.setItem("user_setting", JSON.stringify(items));
     }
   },
 

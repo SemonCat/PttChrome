@@ -8,5 +8,10 @@
     "grunt-contrib-jshint": "*",
     "grunt-contrib-nodeunit": "*",
     "grunt-contrib-uglify": "*"
+  },
+  "dependencies": {
+    "express": "^4.15.4",
+    "http-proxy": "^1.16.2",
+    "http-proxy-middleware": "^0.17.4"
   }
 }
