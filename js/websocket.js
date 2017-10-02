@@ -26,10 +26,12 @@ pttchrome.Websocket.prototype._onMessage = function(e) {
 };
 
 pttchrome.Websocket.prototype._onError = function(e) {
+  console.log(e);
   this.dispatchEvent(new CustomEvent('error'));
 };
 
 pttchrome.Websocket.prototype._onClose = function(e) {
+  console.log(e);
   this.dispatchEvent(new CustomEvent('close'));
 };
 
