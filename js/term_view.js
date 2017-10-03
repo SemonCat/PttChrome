@@ -141,7 +141,15 @@ function TermView(rowCount) {
   this.input.addEventListener('compositionupdate', function(e) {
   }, false);
 
-  addEventListener('keydown', function(e) {
+  this.input.addEventListener('keydown', function(e) {
+
+    if (e.ctrlKey || e.altKey) {
+      self.onKeyDown(e);
+    }
+
+  }, false);
+
+  addEventListener('keypress', function(e) {
     // On both Mac and Windows, control/alt+key will be sent as original key
     // code even under IME.
     // Char inputs will be handler on input event.
