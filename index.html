@@ -60,9 +60,9 @@
 
   <body>
     <ul id="contextMenus" class="dropdown-menu" role="menu" style="display:none">
-      <li id="cmenu_copy" class="cmenuItem contextSel"><a></a></li>
-      <li id="cmenu_copyAnsi" class="cmenuItem contextSel"><a></a></li>
-      <li id="cmenu_paste" class="cmenuItem contextNormal"><a></a></li>
+      <li id="cmenu_copy" class="cmenuItem contextSel hidden"><a></a></li>
+      <li id="cmenu_copyAnsi" class="cmenuItem contextSel hidden"><a></a></li>
+      <li id="cmenu_paste" class="cmenuItem contextNormal hidden"><a></a></li>
       <li id="cmenu_searchGoogle" class="cmenuItem contextSel"><a></a></li>
       <li id="cmenu_openUrlNewTab" class="cmenuItem contextUrl"><a></a></li>
       <li id="cmenu_copyLinkUrl" class="cmenuItem contextUrl"><a></a></li>
@@ -85,6 +85,7 @@
 
     <div id="BBSWindow" style="display:none">
       <input id="t" type="text" autocomplete="off" style="box-sizing:content-box; color:initial; border: none; width: 200px; height: 24px; position:absolute; left:-10000px; top:0px; z-index:2;resize: none; font-family:inherit !important;" autofocus/>
+      <input id="copy_paste" type="text" autocomplete="off" style="box-sizing:content-box; color:initial; border: none; width: 200px; height: 24px; position:absolute; left:-10000px; top:0px; z-index:2;resize: none; font-family:inherit !important;" autofocus/>
       <div id="cursor" class="terminal_display">_</div>
     </div> <!--BBSWindow end-->
     <div id="hideobj" style="display: none;">

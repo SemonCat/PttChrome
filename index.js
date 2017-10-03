@@ -17,7 +17,7 @@ app.use('/js', express.static(path.join(__dirname, 'js')));
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
-  res.sendFile('dev.html', {root: __dirname})
+  res.sendFile('index.html', {root: __dirname})
 })
 
 var proxy = require('http-proxy-middleware');
